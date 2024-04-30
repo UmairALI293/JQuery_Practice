@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            padding: 05px;
+            margin: 20px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color:#DCDCDC ;">
+        <div class="x">
+            <p style="padding: 8px 0 8px 0;"><b>NAME: </b><span  class="edu" style="display: none;">UMAIR ALI</span> </p>
+            <p style="padding: 8px 0 8px 0;"><b>Stack: </b><span  class="edu" style="display: none;">Dot Net Developer</span></p>
+            <p style="padding: 8px 0 8px 0;"><b>Company: </b><span  class="edu" style="display: none;">At Tekhqs</span></p>
+            <p style="padding: 8px 0 8px 0;"><b>Contct: </b><input class="num" style="padding: 2px 0 2px 10px; display: none;" type="text" value="0314-4431226"></input></p>
+        </div>
+        <div>
+            <h3>Education:</h3>
+            <div class="animate" style="padding: 0px; margin: 0px; position: relative; ">
+                <p style="padding: 8px 0 0 100px;"><b>Master Of Computer Science</b></p>
+                <p class="edu" style="padding: 0 0 8px 120px; display: none;" >Feb,2022-Feb,2024</p>
+                <p style="padding-left: 100px;"><b>Associate degree in Computer Science</b></p>
+                <p class="edu" style="padding-left: 120px; display: none;">Feb,2019-Jan,2022</p>
+            </div>
+        </div>
+        <div >
+            <button style="margin-right: 5px;">Hide</button><button class="a">Show</button>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    $(document).ready(function () {
+
+        // $("p:eq(1)").click(function(){
+        //     $(this).css("color", "Blue");
+        // });
+        // $("p:eq(1)").dblclick(function(){
+        //   $(this).css("color", "Black");
+        //  });
+        // $("p:eq(2)").click(function(){
+        //     $(this).hide();
+        // });
+        $("button").click(function () {
+            $("span").hide();
+        });
+
+        $(".a").click(function () {
+            $("span").show();
+        });
+
+        $("span").mouseenter(function () {
+            $(this).css("color", "Blue");
+        });
+
+        $("span").mouseleave(function () {
+            $(this).css("color", "black");
+        });
+
+        $(".a").hover
+            (function () {
+
+                $(this).css("color", "green");
+            },
+                function () {
+                    $(this).css("color", "");
+                });
+
+        $("p:eq(3)").click(function () {
+            alert("Welcome to TeKhqs");
+        });
+
+        $("input").focus(function () {
+            $(this).css("background-color", "#F5F5DC");
+        });
+
+        $("input").blur(function () {
+            $(this).css("background-color", "white");
+        });
+
+        $(".x").on({
+            mouseenter: function () {
+                $(this).css("background-color", "lightblue");
+            },
+            mouseleave: function () {
+                $(this).css("background-color", "#DCDCDC")
+            },
+            click: function () {
+                $("Span").hide();
+
+            }
+        });
+
+        // $(".edu").on({
+        //     mouseenter: function () {
+        //         $(this).fadeOut("slow");
+        //     },
+        //     mouseleave: function () {
+        //         $(this).fadeIn("slow");}
+        //     });    
+        // $(".edu").fadeIn(3000);
+        $(".edu").fadeToggle(3000);
+        $(".num").slideToggle(3000);
+        $(".animate").click(function(){
+            var div = $(this);
+            div.animate({height: '300px', opacity: '0.4'}, "slow");
+            div.animate({width: '300px', opacity: '0.8'}, "slow");
+            div.animate({height: '100px', opacity: '0.4'}, "slow");
+            div.animate({width: '100px', opacity: '0.8'}, "slow");
+        });
+
+    });
+</script>
