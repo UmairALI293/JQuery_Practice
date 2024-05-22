@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+</head>
+
+<body>
+
+    <script>
+// High order functions
+
+//map
+const persons = [
+    {firstname:"Umair", Lastname:"Ali"},
+    {firstname:"Zeeshan", Lastname:"Noor"},
+    {firstname:"Zain", Lastname:"Rafiqe"},
+]
+// map array into new array
+let person = persons.map((i) =>i.firstname +' '+i.Lastname )
+
+
+// filter from array
+let p = persons.filter((i) => i.firstname == "Zeeshan")
+let p1 = persons.filter(({Lastname}) => Lastname == "Ali")
+console.log(person)
+console.log(p)
+console.log(p1)
+
+
+const obj1 = { a: 1, b: 2 };
+const obj2 = { c: 3, d: 4 };
+const obj3 = { e: 5, f: 6 };
+const mergedObj = [obj1, obj2, obj3].reduce
+(
+    (acc, curr) => 
+    {
+    return { ...acc, ...curr };
+    }, {}
+);
+console.log(mergedObj); 
+
+//group by name using reduce
+
+const shoppingCart = [
+    {name: 'Apple', price: 1.99, quantity: 3},
+    {name: 'Apple', price: 1.99, quantity: 3},
+    {name: 'Xiomi', price: 2.99, quantity: 2},
+    {name: 'Samsung', price: 3.99, quantity: 1},
+    {name: 'Tesla', price: 3.99, quantity: 1},
+    {name: 'Tesla', price: 4.99, quantity: 4},
+    {name: 'Nokia', price: 4.99, quantity: 4},
+]
+
+const products = shoppingCart.reduce((productGroup, product) => {
+    const name = product.name;
+    if(productGroup[name] == null) {
+        productGroup[name] = [];
+    }
+    productGroup[name].push(product);
+
+    return productGroup;
+}, {});
+
+console.log(products);
+
+// Call back, Promise, Async Await
+
+   //promise
+        function getdata(id) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log("data", id);
+                    resolve("success");
+                }, 2000);
+            });
+        }
+        let promise = getdata(123);
+        promise.then((res) => {
+            console.log("fullfilled", res)
+        });
+        console.log(getdata());
+
+        // Async Await
+        async function getdata() {
+            console.log("Hello");
+        }
+
+        getdata();
+
+        const z = async function () {
+            await console.log("3");
+            console.log("5");
+        }
+        console.log("1");
+        z().then((r) => console.log(r));
+        console.log("2");
+        console.log("4");
+
+
+        // Async Await
+        async function getalldata() {
+            console.log("geting data 1");
+            await getdata(1);
+            console.log("geting data 2");
+            getdata(2);
+            console.log("geting data 3");
+            await getdata(3);
+            console.log("geting data 3");
+            await getdata(4);
+        }
+        console.log(getalldata());
+
+
+    </script>
+</body>
+
+</html>

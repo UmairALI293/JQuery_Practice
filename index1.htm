@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Login Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-container h1 {
+            color: #1877f2;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .login-container .form-group {
+            margin-bottom: 15px;
+        }
+        .login-container .btn-primary {
+            background-color: #1877f2;
+            border-color: #1877f2;
+        }
+        .login-container .btn-primary:hover {
+            background-color: #165eab;
+            border-color: #165eab;
+        }
+        .login-container .link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #1877f2;
+            text-decoration: none;
+        }
+        .login-container .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <style>
+        .info-container {
+            margin-bottom: 20px;
+            margin-right: 30px;
+        }
+        .info-container h5 {
+            color: #1877f2;
+            font-size: 32px;
+        }
+        .info-container,
+        .login-container {
+            display: inline-block;
+            vertical-align: top;
+        }
+        @media (max-width: 768px) {
+            .info-container,
+            .login-container {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <div class="info-container">
+        <h5><b >facebook</b></h5>
+        <h4>Facebook helps you connect and share<br> with the people in your life.</h4>
+    </div>
+
+    <div class="login-container">
+        
+        <form>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email or Phone Number" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Log In</button>
+        </form>
+        <a href="#" class="link">Forgotten password?</a>
+        <hr>
+        <div class="row" style=" padding: 0px 80px;">
+            <div class="col-sm 3">
+                <a href="#" class="btn btn-success btn-block">Create New Account</a>
+            </div>
+       
+        
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

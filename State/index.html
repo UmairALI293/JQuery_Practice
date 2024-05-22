@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Navigation</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+            background-color: aliceblue;
+            padding: 20px;
+        }
+
+        .circles {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            font-size: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .button {
+
+            margin: auto;
+            border-radius: 30px;
+            color: white;
+            background-color: blueviolet;
+            padding: 15px;
+
+        }
+
+        .content {
+            margin: 40px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="circles">
+            <div class="circle" id="circle1" style="background-color: blueviolet;">1</div>
+            <div class="circle" id="circle2">2</div>
+            <div class="circle" id="circle3">3</div>
+        </div>
+        <div class="content" id="content"></div>
+        <div class="buttons">
+            <div class="button" id="prev" onclick="Prev()">Prev</div>
+            <div class="button" id="reset"  onclick="reset()" >Reset</div>
+            <div class="button" id="next" onclick="Next()">Next</div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+
+    const messages = [
+        "Step 1: Learn React ⚛️",
+        "Step 2: Apply for jobs 💼",
+        "Step 3: Invest your new income 🤑",
+    ];
+    document.getElementById("content").innerHTML = messages[0];
+    let counter = 1;
+    function Next() {
+        if (counter < messages.length) {
+            counter += 1;
+            ChangeColor();
+            document.getElementById("content").innerHTML = messages[counter - 1];
+        }
+        else {
+            counter = messages.length;
+            ChangeColor();
+            document.getElementById("content").innerHTML = messages[messages.length - 1];
+        }
+    }
+    function Prev() {
+        if (counter > 1) {
+            counter--;
+            ChangeColor();
+            document.getElementById("content").innerHTML = messages[counter - 1];
+        }
+        else {
+            counter = 1;
+            ChangeColor();
+            document.getElementById("content").innerHTML = messages[0];
+        }
+    }
+
+    function ChangeColor() {
+        for (let i = 1; i <= messages.length; i++) {
+            if (i === counter) {
+                document.getElementById(`circle${i}`).style.backgroundColor = "blueviolet";
+            } else {
+                document.getElementById(`circle${i}`).style.backgroundColor = "aliceblue";
+            }
+        }
+    }
+function reset() {
+    counter == 0;
+    document.getElementById("circle1").style.backgroundColor = "blueviolet";
+
+    document.getElementById("content").innerHTML = messages[0];
+
+    for (let i = 2; i <= messages.length; i++) {
+            
+                document.getElementById(`circle${i}`).style.backgroundColor = "aliceblue";
+        
+        }
+    }
+
+
+</script>
