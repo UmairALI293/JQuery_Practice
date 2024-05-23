@@ -127,3 +127,85 @@ function reset() {
         }
     }
 </script> -->
+
+<!-- <!DOCTYPE html>
+
+
+<script>
+    const messages = [
+        "Step 1: Learn React ⚛️",
+        "Step 2: Apply for jobs 💼",
+        "Step 3: Invest your new income 🤑",
+    ];
+    let counter = 1;
+    let dateCount = 0;
+    let StepCount = 1;
+    let currentDate = new Date();
+    document.getElementById("content").innerHTML = messages[0];
+
+    function Next() {
+        if (counter < messages.length) {
+            counter++;
+            updateContentAndColors();
+        }
+    }
+
+    function Prev() {
+        if (counter > 1) {
+            counter--;
+            updateContentAndColors();
+        }
+    }
+
+    function Reset() {
+        counter = 1;
+        updateContentAndColors();
+    }
+
+    function updateContentAndColors() {
+        document.getElementById("content").innerHTML = messages[counter - 1];
+        for (let i = 1; i <= messages.length; i++) {
+            document.getElementById(`circle${i}`).style.backgroundColor = (i === counter) ? "blueviolet" : "aliceblue";
+        }
+    }
+
+    function displayDate() {
+        var today = new Date();
+        var date = today.toDateString();
+        document.getElementById("dateDiv").innerHTML = date;
+    }
+
+
+    function Countincrease() {
+
+        currentDate.setDate(currentDate.getDate() + StepCount);
+        document.getElementById("dateDiv").innerHTML = currentDate.toDateString();
+        dateCount += 1;
+        document.getElementById("Datecontent").innerHTML = `Count:${dateCount}`;
+    }
+
+    function CountDecrease() {
+
+        currentDate.setDate(currentDate.getDate() - StepCount);
+        document.getElementById("dateDiv").innerHTML = currentDate.toDateString();
+        dateCount -= 1;
+        document.getElementById("Datecontent").innerHTML = `Count :${dateCount}`;
+    }
+    function Stepincrement() {
+
+        StepCount += 1;
+
+        document.getElementById("Stepcontent").innerHTML = `Step:${StepCount}`;
+    }
+
+    function StepDecrement() {
+        if (StepCount > 1) {
+            StepCount -= 1;
+            document.getElementById("Stepcontent").innerHTML = `Step:${StepCount}`;
+        } else {
+            StepCount = 1;
+            document.getElementById("Stepcontent").innerHTML = `Step:${StepCount}`;
+
+        }
+    }
+</script> -->

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,14 +11,12 @@
             background-color: aliceblue;
             padding: 20px;
         }
-
         .Datecontainer {
             text-align: center;
             margin: 0px 50px 0px 50px;
             background-color: aliceblue;
             padding: 20px;
         }
-
         .circles {
             display: flex;
             justify-content: center;
@@ -36,12 +33,10 @@
             margin: auto;
             font-size: 20px;
         }
-
         .buttons {
             display: flex;
             justify-content: center;
         }
-
         .button {
             margin: auto;
             border-radius: 30px;
@@ -50,26 +45,22 @@
             padding: 15px;
             cursor: pointer;
         }
-
         .content {
             margin: 40px;
             font-size: 20px;
             justify-content: center;
         }
-
         .Datecontent {
             margin: 10px;
             padding: 10px;
             font-size: 20px;
             justify-content: center;
         }
-
         .StepDate {
             margin: 10px;
             padding: 10px;
             justify-content: center;
         }
-
         .StepDate1 {
             display: flex;
             justify-content: center;
@@ -218,84 +209,3 @@
 </script>
 
 
-<!-- <!DOCTYPE html>
-
-
-<script>
-    const messages = [
-        "Step 1: Learn React ⚛️",
-        "Step 2: Apply for jobs 💼",
-        "Step 3: Invest your new income 🤑",
-    ];
-    let counter = 1;
-    let dateCount = 0;
-    let StepCount = 1;
-    let currentDate = new Date();
-    document.getElementById("content").innerHTML = messages[0];
-
-    function Next() {
-        if (counter < messages.length) {
-            counter++;
-            updateContentAndColors();
-        }
-    }
-
-    function Prev() {
-        if (counter > 1) {
-            counter--;
-            updateContentAndColors();
-        }
-    }
-
-    function Reset() {
-        counter = 1;
-        updateContentAndColors();
-    }
-
-    function updateContentAndColors() {
-        document.getElementById("content").innerHTML = messages[counter - 1];
-        for (let i = 1; i <= messages.length; i++) {
-            document.getElementById(`circle${i}`).style.backgroundColor = (i === counter) ? "blueviolet" : "aliceblue";
-        }
-    }
-
-    function displayDate() {
-        var today = new Date();
-        var date = today.toDateString();
-        document.getElementById("dateDiv").innerHTML = date;
-    }
-
-
-    function Countincrease() {
-
-        currentDate.setDate(currentDate.getDate() + StepCount);
-        document.getElementById("dateDiv").innerHTML = currentDate.toDateString();
-        dateCount += 1;
-        document.getElementById("Datecontent").innerHTML = `Count:${dateCount}`;
-    }
-
-    function CountDecrease() {
-
-        currentDate.setDate(currentDate.getDate() - StepCount);
-        document.getElementById("dateDiv").innerHTML = currentDate.toDateString();
-        dateCount -= 1;
-        document.getElementById("Datecontent").innerHTML = `Count :${dateCount}`;
-    }
-    function Stepincrement() {
-
-        StepCount += 1;
-
-        document.getElementById("Stepcontent").innerHTML = `Step:${StepCount}`;
-    }
-
-    function StepDecrement() {
-        if (StepCount > 1) {
-            StepCount -= 1;
-            document.getElementById("Stepcontent").innerHTML = `Step:${StepCount}`;
-        } else {
-            StepCount = 1;
-            document.getElementById("Stepcontent").innerHTML = `Step:${StepCount}`;
-
-        }
-    }
-</script> -->
