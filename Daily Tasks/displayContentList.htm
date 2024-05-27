@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        #outer {
+            margin: 100px;
+        }
+
+        .container {
+            background-color: whitesmoke;
+            margin: 20px 80px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+           
+        }
+        .question {
+            display: flex;
+            align-items: center;
+        }
+        .sign {
+            margin-left: auto;
+            padding-left: 10px;
+            color: black;
+        }
+        .answer {
+            display: none;
+            background-color: whitesmoke;
+            padding-left: 45px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: x-large;
+            margin-top: 10px;
+        }
+        span {
+            color: green;
+            padding-right: 10px;
+        }
+        .num{
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <div class="container" onclick="toggleAnswer(this)">
+            <div class="question">
+                <span class="num">01</span>
+                Where are these chairs assembled?
+                <span class="sign">+</span>
+            </div>
+            <div class="answer">The chairs are assembled in our main factory located in Lahore city.</div>
+        </div>
+
+        <div class="container" onclick="toggleAnswer(this)">
+            <div class="question">
+                <span class="num">02</span>
+                How long do I have to return my chair?
+                <span class="sign">+</span>
+            </div>
+            <div class="answer">You have 30 days from the date of purchase to return your chair. You have 30 days from the date of purchase to return your chair.</div>
+        </div>
+
+        <div class="container" onclick="toggleAnswer(this)">
+            <div class="question">
+                <span class="num">03</span>
+                Do you ship to countries outside the EU?
+                <span class="sign">+</span>
+            </div>
+            <div class="answer">Yes, we ship to most countries worldwide. Please check our shipping policy for more
+                details.</div>
+        </div>
+    </div>
+
+    <script>
+        // function toggleAnswer(container) {
+        //     const answer = container.querySelector('.answer');
+        //     const sign = container.querySelector('.sign');
+        //     if (answer.style.display === 'none' || answer.style.display === '') {
+        //         answer.style.display = 'block';
+        //         sign.textContent = '-';
+        //     } else {
+        //         answer.style.display = 'none';
+        //         sign.textContent = '+';
+        //     }
+        // }
+        function toggleAnswer(container) {
+            const answer = $(container).find('.answer');
+            const sign = $(container).find('.sign');
+            $(container).css( 'border-top' , '5px solid green')
+            answer.slideToggle(200, function () {
+                // Check the visibility after the slideToggle animation completes
+                if (answer.is(':visible')) {
+                    sign.text('-');
+                    $(container).find('.num').css('color', 'gray');
+                  
+                } else {
+                    sign.text('+');
+                    $(container).find('.num').css('color', 'green');
+                    $(container).css( 'border-top' , '')
+                }
+            });
+        }
+    </script>
+</body>
+</html>

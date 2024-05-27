@@ -101,6 +101,7 @@
             <h2 id="dateDiv"></h2>
             <p id="dateDiv1"></p>
         </div>
+        <button class="StepDate" id="StepDate" onclick="fetchadv()"><b>click me</b></button>
     </div>
 </body>
 
@@ -206,6 +207,25 @@
         dateCount += step;
         document.getElementById("Datecontent").innerHTML = `Count: ${dateCount}`;
     }
+
+
+function fetchadv(){
+    $.ajax({
+                url: 'https://api.adviceslip.com/advice',
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    const advice = data.slip.advice;
+                    console.log(advice);
+                    $('#dateDiv1').text(advice);
+                    resolve();
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching data:', error);
+                    $('#dateDiv1').text('Error fetching data.');
+                    reject(error);
+                }
+            });
+}
+   
 </script>
-
-

@@ -1,3 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="button" id="myButton"></div>
+</body>
+
+</html>
+<script>
+
+    // Global Scope: this refers to the global object (window in browsers).
+    // Object Method: this refers to the object the method is called on.
+    // Constructor Function: this refers to the newly created instance.
+    // call, apply, bind: this can be explicitly set.
+    // Arrow Functions: this retains the value from the enclosing lexical context.
+    // Event Handlers: this refers to the element that received the event.
+    // Strict Mode: this is undefined in regular functions.
+
+
+    console.log(this); // In a browser, this will log the Window object
+
+    //Object Method 
+    const person1 = {
+        name: 'Alice',
+        greet: function () {
+            console.log(this.name);
+        }
+    };
+    person1.greet(); // Logs "Alice" because `this` refers to the `person` object
+
+
+
+
+    //onject method with Arrow Functions 
+    const myobj = {
+        name: 'Alice',
+        greet1: () => {
+            console.log(this.name);
+        }
+    };
+    myobj.greet1(); // Logs `undefined` because `this` refers to the global object (or undefined in strict mode)
+
+
+
+
+
+    //Arrow Functions 
+    const outsideFunction = () => {
+        const myobj = {
+            name: 'Alice',
+            greet1: () => {
+                console.log(this.name); // `this` is inherited from the surrounding lexical context
+            }
+        };
+        myobj.greet1();
+    };
+    outsideFunction(); // Logs `undefined`
+
+
+
+
+    const myobj1 = {
+        name: 'Alice',
+        greet1: function () {
+            const self = this;
+            return () => {
+                console.log(self.name); // `self` captures `this` from the outer scope lexically
+            };
+        }
+    };
+    const myFunction = myobj1.greet1(); // Assign the returned function to a variable
+    myFunction(); // Logs "Alice"
+
+
+
+
+    const numbers = [1, 2, 3];
+    const squared = numbers.map(num => num * num); // Use arrow function for concise mapping
+    console.log(squared); // [1, 4, 9]
+
+
+
+    //Constructor Function
+    function Person2(name) {
+        this.name = name;
+    }
+    const bob = new Person2('Bob');
+    console.log(bob.name); // Logs "Bob" because `this` refers to the newly created `bob` object
+
+
+
+    //call, apply, and bind Methods
+    function sayHello() {
+        console.log(this.name);
+    }
+    const person3 = {
+        name: 'Alice'
+    };
+    sayHello.call(person3);  // Logs "Alice"
+    sayHello.apply(person3); // Logs "Alice"
+    const boundSayHello = sayHello.bind(person3);
+    boundSayHello();        // Logs "Alice"
+
+
+    //Event Handlers
+    const button = document.getElementById('myButton');
+    button.addEventListener('click', function () {
+        console.log(this); // Logs the button element because `this` refers to the element that received the event
+    });
+
+
+    //strict mode
+    'use strict';
+    function showThis() {
+        console.log(this);
+    }
+    showThis(); // Logs `undefined` because `this` is not set in strict mode
+</script>
+
+
 <!-- <!DOCTYPE html>
 <html lang="en">
 
