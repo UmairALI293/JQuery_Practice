@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,17 +18,20 @@
             flex-direction: column;
             font-family: Arial, Helvetica, sans-serif;
             font-size: xx-large;
-           
+
         }
+
         .question {
             display: flex;
             align-items: center;
         }
+
         .sign {
             margin-left: auto;
             padding-left: 10px;
             color: black;
         }
+
         .answer {
             display: none;
             background-color: whitesmoke;
@@ -38,11 +40,13 @@
             font-size: x-large;
             margin-top: 10px;
         }
+
         span {
             color: green;
             padding-right: 10px;
         }
-        .num{
+
+        .num {
             font-weight: 600;
         }
     </style>
@@ -65,7 +69,8 @@
                 How long do I have to return my chair?
                 <span class="sign">+</span>
             </div>
-            <div class="answer">You have 30 days from the date of purchase to return your chair. You have 30 days from the date of purchase to return your chair.</div>
+            <div class="answer">You have 30 days from the date of purchase to return your chair. You have 30 days from
+                the date of purchase to return your chair.</div>
         </div>
 
         <div class="container" onclick="toggleAnswer(this)">
@@ -94,17 +99,17 @@
         function toggleAnswer(container) {
             const answer = $(container).find('.answer');
             const sign = $(container).find('.sign');
-            $(container).css( 'border-top' , '5px solid green')
+            $(container).css('border-top', '5px solid green')
             answer.slideToggle(200, function () {
                 // Check the visibility after the slideToggle animation completes
                 if (answer.is(':visible')) {
                     sign.text('-');
                     $(container).find('.num').css('color', 'gray');
-                  
+
                 } else {
                     sign.text('+');
                     $(container).find('.num').css('color', 'green');
-                    $(container).css( 'border-top' , '')
+                    $(container).css('border-top', '')
                 }
             });
         }

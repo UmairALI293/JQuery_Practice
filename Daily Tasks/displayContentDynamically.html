@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        #outer {
+            margin: 100px;
+        }
+
+        .container {
+            background-color: whitesmoke;
+            margin: 20px 80px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: xx-large;
+            color: black;
+        }
+
+        .question {
+            display: flex;
+            align-items: center;
+        }
+
+        .sign {
+            margin-left: auto;
+            padding-left: 10px;
+            color: black;
+        }
+
+        .answer {
+            display: none;
+            background-color: whitesmoke;
+            padding-left: 45px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: x-large;
+            margin-top: 10px;
+        }
+
+        span {
+            color: green;
+            padding-right: 10px;
+        }
+
+        .num {
+            font-weight: 600;
+        }
+
+        .title {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+    </div>
+    <script>
+        function toggleAnswer(container) {
+            const answer = $(container).find('.answer');
+            const sign = $(container).find('.sign');
+            $(container).css('border-top', '5px solid green');
+            answer.slideToggle(200, function () {
+                if (answer.is(':visible')) {
+                    sign.text('-');
+                    $(container).find('.num').css('color', 'gray');
+                } else {
+                    sign.text('+');
+                    $(container).find('.num').css('color', 'green');
+                    $(container).css('border-top', '');
+                }
+            });
+        }
+        const faqs = [
+            {
+                title: "Where are these chairs assembled?",
+                text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium, quaerat temporibus quas dolore provident nisi ut aliquid ratione beatae sequi aspernatur veniam repellendus.",
+            },
+            {
+                title: "How long do I have to return my chair?",
+                text: "Pariatur recusandae dignissimos fuga voluptas unde optio nesciunt commodi beatae, explicabo natus.",
+            },
+            {
+                title: "Do you ship to countries outside the EU?",
+                text: "Excepturi velit laborum, perspiciatis nemo perferendis reiciendis aliquam possimus dolor sed! Dolore laborum ducimus veritatis facere molestias!",
+            },
+        ];
+        // faqs.forEach(function(item) {
+        //     console.log(item);
+        // });
+        // Loop through the array and dynamically create html elements 
+        faqs.forEach(faq => {
+        // faqs.forEach(function (faq, index) {
+            const container = $('<div>').addClass('container');
+            const question = $('<div>').addClass('question');
+            // const num = $('<span>').addClass('num').text("0" + (index + 1));
+                const num = $('<span>').addClass('num').text("0" +(faqs.indexOf(faq) + 1));
+            const title = $('<span>').addClass('title').text(faq.title);
+            const sign = $('<span>').addClass('sign').text('+');
+            const answer = $('<div>').addClass('answer').text(faq.text);
+            question.append(num, title, sign);
+            container.append(question, answer);
+            container.click(function () {
+                toggleAnswer(this);
+            });
+            $('#outer').append(container);
+        });
+    </script>
+</body>
+</html>
