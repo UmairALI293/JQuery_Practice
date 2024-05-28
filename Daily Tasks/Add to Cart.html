@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        img {
+            height: 80px;
+            width: 80px;
+        }
+
+        #headerOuter {
+            height: 100px;
+            background-color: rgba(255, 140, 0, 0.836);
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: xx-large;
+            padding: 20px 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0px;
+        }
+
+        #menuBar {
+            display: flex;
+            gap: 20px;
+            height: 70px;
+            background-color: chocolate;
+            margin: 0px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #Content {
+            height: 400px;
+            background-color: #7B583D;
+            padding-top: 10px;
+        }
+
+        #footer {
+            height: 50px;
+            background-color: rgba(103, 163, 165, 0.863);
+        }
+
+        #footer {
+            font-style: italic;
+            text-align: center;
+            justify-content: center;
+            padding: 12px 0;
+        }
+
+        .remove {
+            border: none;
+            color: red;
+            background-color: inherit;
+        }
+
+        #InputItem,
+        #numberDropdown,
+        #add {
+
+            border: none;
+            border-radius: 20px;
+        }
+
+        #add,
+        #numberDropdown {
+            width: 60px;
+        }
+
+        
+        .btnDiv{
+            margin-top: 280px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        #clearlist,
+        #sortDropdown{
+            padding: 5px;
+            border: none;
+            border-radius: 20px;
+            height: auto;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="container" id="headerOuter">
+            <img src="https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-flat/128/Palm-Tree-Flat-icon.png">
+            <h2 id="Header">
+                FAR AWAY
+            </h2>
+            <img alt="Suitcase Flat Icon Vector"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Suitcase_Flat_Icon_Vector.svg/512px-Suitcase_Flat_Icon_Vector.svg.png?20180301083157">
+        </div>
+        <div class="container" id="menuBar">
+            <h3>What do you need for your trip?</h3>
+            <select id="numberDropdown">
+            </select>
+            <input id="InputItem" type="text" placeholder="items...." onclick="clear()" style="padding-left: 10px;">
+
+            <button id="add" onclick="addItem()" id="button" style="background-color:  rgba(103, 163, 165, 0.863)"
+                c>Add</button>
+        </div>
+        <div class="container" id="Content">
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th>Num of items</th>
+                        <th>Item Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+           <div class="btnDiv">
+            <select id="sortDropdown" style="width: 200px;">
+                <option value="default">Sort By Direction</option>
+                <option value="az">A-Z</option>
+                <option value="za">Z-A</option>
+            </select>
+            <button id="clearlist" onclick="clearList()" style="width: 100px;">Clear List</button>
+           </div>
+        </div>
+        <div class="container" id="footer">
+            <h5>Start adding some items to your packing list</h5>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function clearList() {
+        const tbody = document.querySelector('#Content tbody');
+        tbody.innerHTML = ''
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        dropDownRange();
+        document.getElementById('sortDropdown').addEventListener('change', sortItems);
+    });
+
+    function dropDownRange() {
+        const select = document.getElementById('numberDropdown');
+        const start = 1;
+        const end = 10;
+        for (let i = start; i <= end; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.text = i;
+            select.appendChild(option);
+        }
+    };
+
+    function addItem() {
+        const numberDropdown = document.getElementById('numberDropdown');
+        const itemNameInput = document.getElementById('InputItem');
+
+        const numOfItems = numberDropdown.value;
+        const itemName = itemNameInput.value;
+        if (numOfItems && itemName != "") {
+            // Add the new item 
+            const tbody = document.querySelector('#Content tbody');
+            const row = document.createElement('tr');
+
+            const cellNumOfItems = document.createElement('td');
+            cellNumOfItems.textContent = numOfItems;
+            row.appendChild(cellNumOfItems);
+
+            const cellItemName = document.createElement('td');
+            cellItemName.textContent = itemName;
+            row.appendChild(cellItemName);
+
+            const cellAction = document.createElement('td');
+            const removeButton = document.createElement('button');
+            removeButton.classList.add('remove')
+            removeButton.textContent = 'X';
+            removeButton.onclick = function () {
+                row.remove();
+            };
+            cellAction.appendChild(removeButton);
+            row.appendChild(cellAction);
+
+            tbody.appendChild(row);
+
+            // Clear the input fields after adding
+            numberDropdown.selectedIndex = 0;
+            itemNameInput.value = '';
+
+            // Sort the items after adding
+            sortItems();
+        }
+        else {
+            alert('Please select a number and enter an item name.');
+        }
+    };
+
+    function sortItems() {
+        const sortOption = document.getElementById('sortDropdown').value;
+        const tbody = document.querySelector('#Content tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+
+        rows.sort((a, b) => {
+            const itemA = a.children[1].textContent.toLowerCase();
+            const itemB = b.children[1].textContent.toLowerCase();
+
+            if (sortOption === 'az') {
+                return itemA.localeCompare(itemB);
+            } else if (sortOption === 'za') {
+                return itemB.localeCompare(itemA);
+            } else {
+                return 0;
+            }
+        });
+
+        rows.forEach(row => tbody.appendChild(row));
+    }
+</script>
