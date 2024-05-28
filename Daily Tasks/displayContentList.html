@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -114,5 +115,59 @@
             });
         }
     </script>
+
+
+    <!-- <script>
+    function toggleAnswer(container) {
+        // Hide all answers except the one in the clicked container
+        var answers = document.querySelectorAll('.answer');
+        answers.forEach(function(answer) {
+            if (answer !== container.querySelector('.answer')) {
+                answer.style.display = 'none';
+            }
+        });
+
+        var signs = document.querySelectorAll('.sign');
+        signs.forEach(function(sign) {
+            if (sign !== container.querySelector('.sign')) {
+                sign.textContent = '+';
+            }
+        });
+
+        var nums = document.querySelectorAll('.num');
+        nums.forEach(function(num) {
+            if (num !== container.querySelector('.num')) {
+                num.style.color = 'green';
+            }
+        });
+
+        var containers = document.querySelectorAll('.container');
+        containers.forEach(function(cont) {
+            if (cont !== container) {
+                cont.style.borderTop = '';
+            }
+        });
+
+        var answer = container.querySelector('.answer');
+        var sign = container.querySelector('.sign');
+        var num = container.querySelector('.num');
+
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+            sign.textContent = '+';
+            num.style.color = 'green';
+            container.style.borderTop = '';
+        } else {
+            answer.style.display = 'block';
+            sign.textContent = '-';
+            num.style.color = 'gray';
+            container.style.borderTop = '5px solid green';
+        }
+    }
+</script> -->
+
+
+
 </body>
+
 </html>
