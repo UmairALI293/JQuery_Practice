@@ -29,15 +29,18 @@
         #menuBar {
             display: flex;
             gap: 20px;
+            flex-wrap: wrap;
             height: 70px;
             background-color: chocolate;
             margin: 0px;
             justify-content: center;
             align-items: center;
         }
+        
 
         #Content {
             height: 400px;
+            overflow-y: scroll;
             background-color: #7B583D;
             padding-top: 10px;
         }
@@ -75,14 +78,14 @@
 
         
         .btnDiv{
-            margin-top: 280px;
+            background-color: #7B583D;
             display: flex;
             justify-content: center;
             gap: 10px;
         }
         #clearlist,
         #sortDropdown{
-            padding: 5px;
+          margin-bottom: 10px;
             border: none;
             border-radius: 20px;
             height: auto;
@@ -103,7 +106,7 @@
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Suitcase_Flat_Icon_Vector.svg/512px-Suitcase_Flat_Icon_Vector.svg.png?20180301083157">
         </div>
         <div class="container" id="menuBar">
-            <h3>What do you need for your trip?</h3>
+            <h6>What do you need for your trip?</h6>
             <select id="numberDropdown">
             </select>
             <input id="InputItem" type="text" placeholder="items...." onclick="clear()" style="padding-left: 10px;">
@@ -123,7 +126,8 @@
                 <tbody>
                 </tbody>
             </table>
-           <div class="btnDiv">
+        </div>
+        <div class="btnDiv">
             <select id="sortDropdown" style="width: 200px;">
                 <option value="default">Sort By Direction</option>
                 <option value="az">A-Z</option>
@@ -131,7 +135,6 @@
             </select>
             <button id="clearlist" onclick="clearList()" style="width: 100px;">Clear List</button>
            </div>
-        </div>
         <div class="container" id="footer">
             <h5>Start adding some items to your packing list</h5>
         </div>
