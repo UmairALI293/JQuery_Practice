@@ -76,89 +76,94 @@
                 answer: "Controlled element",
             },
         ];
-        function toggleAnswer(container) {
-            const answer = container.querySelector('.answer');
-            const question = container.querySelector('.question');
-            const isVisible = answer.style.display === 'block';
-            document.querySelectorAll('.container .answer').forEach(ans => ans.style.display = 'none');
-            document.querySelectorAll('.container .question').forEach(q => q.style.display = 'block');
-            document.querySelectorAll('.container').forEach(cont => cont.style.backgroundColor = 'whitesmoke');
+        function toggleAnswer(id) {
+            document.querySelectorAll('.container').forEach(container => {
+                const answer = container.querySelector('.answer');
+                const question = container.querySelector('.question');
 
-            if (!isVisible) {
-                question.style.display = 'none';
-                answer.style.display = 'block';
-                container.style.backgroundColor = 'pink';
-            }
+                if (container.dataset.id === id.toString()) {
+                    const isVisible = answer.style.display === 'block';
+                    if (isVisible) {
+                        answer.style.display = 'none';
+                        question.style.display = 'block';
+                        container.style.backgroundColor = 'whitesmoke';
+                    } else {
+                        answer.style.display = 'block';
+                        question.style.display = 'none';
+                        container.style.backgroundColor = 'pink';
+                    }
+                } else {
+                    answer.style.display = 'none';
+                    question.style.display = 'block';
+                    container.style.backgroundColor = 'whitesmoke';
+                }
+            });
         }
+
         const CartsContainer = document.getElementById('CartsContainer');
         questions.forEach((cart) => {
             const container = document.createElement('div');
             container.className = 'container';
+            container.dataset.id = cart.id;
 
             const question = document.createElement('div');
             question.className = 'question';
-            question.textContent = cart.question; // Changed to cart.question
+            question.textContent = cart.question;
 
             const answer = document.createElement('div');
             answer.className = 'answer';
-            answer.textContent = cart.answer; // Changed to cart.answer
+            answer.textContent = cart.answer;
 
             container.appendChild(question);
             container.appendChild(answer);
 
             container.addEventListener('click', function () {
-                toggleAnswer(container);
+                toggleAnswer(cart.id);
             });
+
             CartsContainer.appendChild(container);
         });
-        // function toggleAnswer(id) {
-        //     document.querySelectorAll('.container').forEach(container => {
-        //         const answer = container.querySelector('.answer');
-        //         const question = container.querySelector('.question');
+    </script>
+</body>
+</html>
 
-        //         if (container.dataset.id === id.toString()) {
-        //             const isVisible = answer.style.display === 'block';
-        //             if (isVisible) {
-        //                 answer.style.display = 'none';
-        //                 question.style.display = 'block';
-        //                 container.style.backgroundColor = 'whitesmoke';
-        //             } else {
-        //                 answer.style.display = 'block';
-        //                 question.style.display = 'none';
-        //                 container.style.backgroundColor = 'pink';
-        //             }
-        //         } else {
-        //             answer.style.display = 'none';
-        //             question.style.display = 'block';
-        //             container.style.backgroundColor = 'whitesmoke';
-        //         }
-        //     });
+
+
+<!-- 
+<script>
+    // function toggleAnswer(container) {
+        //     const answer = container.querySelector('.answer');
+        //     const question = container.querySelector('.question');
+        //     const isVisible = answer.style.display === 'block';
+        //     document.querySelectorAll('.container .answer').forEach(ans => ans.style.display = 'none');
+        //     document.querySelectorAll('.container .question').forEach(q => q.style.display = 'block');
+        //     document.querySelectorAll('.container').forEach(cont => cont.style.backgroundColor = 'whitesmoke');
+
+        //     if (!isVisible) {
+        //         question.style.display = 'none';
+        //         answer.style.display = 'block';
+        //         container.style.backgroundColor = 'pink';
+        //     }
         // }
-
         // const CartsContainer = document.getElementById('CartsContainer');
         // questions.forEach((cart) => {
         //     const container = document.createElement('div');
         //     container.className = 'container';
-        //     container.dataset.id = cart.id;
 
         //     const question = document.createElement('div');
         //     question.className = 'question';
-        //     question.textContent = cart.question;
+        //     question.textContent = cart.question; // Changed to cart.question
 
         //     const answer = document.createElement('div');
         //     answer.className = 'answer';
-        //     answer.textContent = cart.answer;
+        //     answer.textContent = cart.answer; // Changed to cart.answer
 
         //     container.appendChild(question);
         //     container.appendChild(answer);
 
         //     container.addEventListener('click', function () {
-        //         toggleAnswer(cart.id);
+        //         toggleAnswer(container);
         //     });
-
         //     CartsContainer.appendChild(container);
         // });
-    </script>
-</body>
-
-</html>
+</script> -->
