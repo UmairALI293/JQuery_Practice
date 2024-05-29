@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            background-color: whitesmoke;
+            margin: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: large;
+            text-align: center;
+            justify-content: center;
+            color: black;
+            box-sizing: border-box;
+            flex: 1 1 calc(33% - 40px);
+            height: 250px;
+            width: calc(33% - 40px);
+            border-radius: 20px;
+            transition: background-color 0.3s, height 0.3s;
+        }
+        .question {
+            display: block;
+        }
+        .answer {
+            display: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: x-large;
+            margin-top: 10px;
+            color: black;
+        }
+        #CartsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div id="CartsContainer">
+    </div>
+    <script>
+        const questions = [
+            {
+                id: 3457,
+                question: "What language is React based on?",
+                answer: "JavaScript",
+            },
+            {
+                id: 7336,
+                question: "What are the building blocks of React apps?",
+                answer: "Components",
+            },
+            {
+                id: 8832,
+                question: "What's the name of the syntax we use to describe a UI in React?",
+                answer: "JSX",
+            },
+            {
+                id: 1297,
+                question: "How to pass data from parent to child components?",
+                answer: "Props",
+            },
+            {
+                id: 9103,
+                question: "How to give components memory?",
+                answer: "useState hook",
+            },
+            {
+                id: 2002,
+                question: "What do we call an input element that is completely synchronised with state?",
+                answer: "Controlled element",
+            },
+        ];
+        function toggleAnswer(container) {
+            const answer = container.querySelector('.answer');
+            const question = container.querySelector('.question');
+            const isVisible = answer.style.display === 'block';
+            document.querySelectorAll('.container .answer').forEach(ans => ans.style.display = 'none');
+            document.querySelectorAll('.container .question').forEach(q => q.style.display = 'block');
+            document.querySelectorAll('.container').forEach(cont => cont.style.backgroundColor = 'whitesmoke');
+
+            if (!isVisible) {
+                question.style.display = 'none';
+                answer.style.display = 'block';
+                container.style.backgroundColor = 'pink';
+            }
+        }
+        const CartsContainer = document.getElementById('CartsContainer');
+        questions.forEach((cart) => {
+            const container = document.createElement('div');
+            container.className = 'container';
+
+            const question = document.createElement('div');
+            question.className = 'question';
+            question.textContent = cart.question; // Changed to cart.question
+
+            const answer = document.createElement('div');
+            answer.className = 'answer';
+            answer.textContent = cart.answer; // Changed to cart.answer
+
+            container.appendChild(question);
+            container.appendChild(answer);
+
+            container.addEventListener('click', function () {
+                toggleAnswer(container);
+            });
+            CartsContainer.appendChild(container);
+        });
+        // function toggleAnswer(id) {
+        //     document.querySelectorAll('.container').forEach(container => {
+        //         const answer = container.querySelector('.answer');
+        //         const question = container.querySelector('.question');
+
+        //         if (container.dataset.id === id.toString()) {
+        //             const isVisible = answer.style.display === 'block';
+        //             if (isVisible) {
+        //                 answer.style.display = 'none';
+        //                 question.style.display = 'block';
+        //                 container.style.backgroundColor = 'whitesmoke';
+        //             } else {
+        //                 answer.style.display = 'block';
+        //                 question.style.display = 'none';
+        //                 container.style.backgroundColor = 'pink';
+        //             }
+        //         } else {
+        //             answer.style.display = 'none';
+        //             question.style.display = 'block';
+        //             container.style.backgroundColor = 'whitesmoke';
+        //         }
+        //     });
+        // }
+
+        // const CartsContainer = document.getElementById('CartsContainer');
+        // questions.forEach((cart) => {
+        //     const container = document.createElement('div');
+        //     container.className = 'container';
+        //     container.dataset.id = cart.id;
+
+        //     const question = document.createElement('div');
+        //     question.className = 'question';
+        //     question.textContent = cart.question;
+
+        //     const answer = document.createElement('div');
+        //     answer.className = 'answer';
+        //     answer.textContent = cart.answer;
+
+        //     container.appendChild(question);
+        //     container.appendChild(answer);
+
+        //     container.addEventListener('click', function () {
+        //         toggleAnswer(cart.id);
+        //     });
+
+        //     CartsContainer.appendChild(container);
+        // });
+    </script>
+</body>
+
+</html>

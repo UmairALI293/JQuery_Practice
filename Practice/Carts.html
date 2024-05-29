@@ -22,7 +22,7 @@
             height: 250px;
             width: 500px;
             border-radius: 2px;
-
+            transition: background-color 0.3s, height 0.3s;
         }
 
         .question {
@@ -49,7 +49,6 @@
 <body>
     <div id="CartsContainer">
     </div>
-
     <script>
         const Carts = [
             {
@@ -77,22 +76,45 @@
                 Answer: "A controlled component.",
             }
         ];
-
         function toggleAnswer(container) {
             const answer = container.querySelector('.answer');
             const question = container.querySelector('.question');
             const currentlyVisibleAnswer = document.querySelector('.answer:not([style*="display: none"])');
+            const currentlyVisibleQuestion = document.querySelector('.question:not([style*="display:block"])')
 
             // Hide the currently visible answer if it's not the one clicked
+
+            // if (currentlyVisibleAnswer && currentlyVisibleAnswer !== answer) {
+            //     currentlyVisibleAnswer.style.display = 'none';
+            //     question.style.display = 'block';
+            //     currentlyVisibleAnswer.parentElement.style.backgroundColor = 'whitesmoke';
+            //     currentlyVisibleAnswer.parentElement.querySelector('.question').style.display = 'block';
+            // }
+            function hideCurrentAnswer(currentAnswer) {
+                if (!currentAnswer) return;
+                currentAnswer.style.display = 'none';
+                const parentElement = currentAnswer.parentElement;
+                parentElement.style.backgroundColor = 'whitesmoke';
+                const questionElement = parentElement.querySelector('.question');
+                if (questionElement) {
+                    questionElement.style.display = 'block';
+                }
+            }
+
+            function showQuestion(questionElement) {
+                if (questionElement) {
+                    questionElement.style.display = 'block';
+                }
+            }
+
             if (currentlyVisibleAnswer && currentlyVisibleAnswer !== answer) {
-                currentlyVisibleAnswer.style.display = 'none';
-                currentlyVisibleAnswer.parentElement.style.backgroundColor = 'whitesmoke';
-                currentlyVisibleAnswer.parentElement.querySelector('.question').style.display = 'block';
+                hideCurrentAnswer(currentlyVisibleAnswer);
+                showQuestion(question);
             }
 
             if (answer.style.display === 'block') {
-                answer.style.display = 'none';
                 question.style.display = 'block';
+                answer.style.display = 'none';
                 container.style.backgroundColor = 'whitesmoke';
             } else {
                 answer.style.display = 'block';
