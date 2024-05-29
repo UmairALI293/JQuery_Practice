@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            background-color: whitesmoke;
+            margin: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: large;
+            text-align: center;
+            justify-content: center;
+            color: black;
+            flex: 1 1 calc(33% - 40px);
+            box-sizing: border-box;
+            height: 250px;
+            width: 500px;
+            border-radius: 2px;
+
+        }
+
+        .question {
+
+            display: block;
+        }
+
+        .answer {
+            display: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: x-large;
+            margin-top: 10px;
+            color: black;
+        }
+
+        #CartsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="CartsContainer">
+    </div>
+
+    <script>
+        const Carts = [
+            {
+                Question: "What language React is based on?",
+                Answer: "JavaScript.",
+            },
+            {
+                Question: "What are the building blocks of React apps?",
+                Answer: "Components.",
+            },
+            {
+                Question: "What's the name of the syntax we use to describe a UI in React?",
+                Answer: "JSX.",
+            },
+            {
+                Question: "How to pass data from parent to child components?",
+                Answer: "Using props.",
+            },
+            {
+                Question: "How to track state in a function component?",
+                Answer: "Use state hooks.",
+            },
+            {
+                Question: "What do we call an input element that is completely synchronized with state?",
+                Answer: "A controlled component.",
+            }
+        ];
+
+        function toggleAnswer(container) {
+            const answer = container.querySelector('.answer');
+            const question = container.querySelector('.question');
+            const currentlyVisibleAnswer = document.querySelector('.answer:not([style*="display: none"])');
+
+            // Hide the currently visible answer if it's not the one clicked
+            if (currentlyVisibleAnswer && currentlyVisibleAnswer !== answer) {
+                currentlyVisibleAnswer.style.display = 'none';
+                currentlyVisibleAnswer.parentElement.style.backgroundColor = 'whitesmoke';
+                currentlyVisibleAnswer.parentElement.querySelector('.question').style.display = 'block';
+            }
+
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                question.style.display = 'block';
+                container.style.backgroundColor = 'whitesmoke';
+            } else {
+                answer.style.display = 'block';
+                question.style.display = 'none';
+                container.style.backgroundColor = 'pink';
+            }
+        }
+
+        const CartsContainer = document.getElementById('CartsContainer');
+        Carts.forEach((cart) => {
+            const container = document.createElement('div');
+            container.className = 'container';
+
+            const question = document.createElement('div');
+            question.className = 'question';
+            question.textContent = cart.Question;
+
+            const answer = document.createElement('div');
+            answer.className = 'answer';
+            answer.textContent = cart.Answer;
+
+            container.appendChild(question);
+            container.appendChild(answer);
+
+            container.addEventListener('click', function () {
+                toggleAnswer(container);
+            });
+
+            CartsContainer.appendChild(container);
+        });
+    </script>
+</body>
+
+</html>
