@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FAQ</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-        #outer {
+        #outerDyn {
             margin: 100px;
         }
 
-        .container {
+        .containerDyn {
             background-color: whitesmoke;
             margin: 20px 80px;
             padding: 20px;
@@ -20,20 +20,22 @@
             font-family: Arial, Helvetica, sans-serif;
             font-size: xx-large;
             color: black;
+            border-radius: 8px;
         }
 
-        .question {
+        .questionDyn {
             display: flex;
             align-items: center;
+            cursor: pointer;
         }
 
-        .sign {
+        .signDyn {
             margin-left: auto;
             padding-left: 10px;
             color: black;
         }
 
-        .answer {
+        .answerDyn {
             display: none;
             background-color: whitesmoke;
             padding-left: 45px;
@@ -42,105 +44,106 @@
             margin-top: 10px;
         }
 
-        span {
+        .numDyn {
+            font-weight: 600;
             color: green;
             padding-right: 10px;
         }
 
-        .num {
-            font-weight: 600;
-        }
-
-        .title {
+        .titleDyn {
             color: black;
         }
     </style>
 </head>
+
 <body>
-    <div id="outer"></div>
-</body>
-</html>
-<script>
-    function toggleAnswer(container) {
-        const answer = container.querySelector('.answer');
-        const sign = container.querySelector('.sign');
-        const num = container.querySelector('.num');
-        const currentlyVisibleAnswer = document.querySelector('.answer:not([style*="display: none"])');
+    <div id="outerDyn"></div>
 
-        // Hide the currently visible answer if it's not the one clicked
-        if (currentlyVisibleAnswer !== answer) {
-            currentlyVisibleAnswer.style.display = 'none';
-            currentlyVisibleAnswer.parentElement.querySelector('.sign').textContent = '+';
-            currentlyVisibleAnswer.parentElement.querySelector('.num').style.color = 'green';
-            currentlyVisibleAnswer.parentElement.style.borderTop = '';
+    <script>
+        function toggleAnswer(container) {
+            const answerDyn = container.querySelector('.answerDyn');
+            const signDyn = container.querySelector('.signDyn');
+            const numDyn = container.querySelector('.numDyn');
+            const currentlyVisibleAnswerDyn = document.querySelector('.answerDyn:not([style*="display: none"])');
+
+            // Hide the currently visible answer if it's not the one clicked
+            if (currentlyVisibleAnswerDyn && currentlyVisibleAnswerDyn !== answerDyn) {
+                currentlyVisibleAnswerDyn.style.display = 'none';
+                currentlyVisibleAnswerDyn.parentElement.querySelector('.signDyn').textContent = '+';
+                currentlyVisibleAnswerDyn.parentElement.querySelector('.numDyn').style.color = 'green';
+                currentlyVisibleAnswerDyn.parentElement.style.borderTop = '';
+            }
+
+            if (answerDyn.style.display === 'block') {
+                answerDyn.style.display = 'none';
+                signDyn.textContent = '+';
+                numDyn.style.color = 'green';
+                container.style.borderTop = '';
+            } else {
+                answerDyn.style.display = 'block';
+                signDyn.textContent = '-';
+                numDyn.style.color = 'gray';
+                container.style.borderTop = '5px solid green';
+            }
         }
 
-        if (answer.style.display === 'block') {
-            answer.style.display = 'none';
-            sign.textContent = '+';
-            num.style.color = 'green';
-            container.style.borderTop = '';
-        } else {
-            answer.style.display = 'block';
-            sign.textContent = '-';
-            num.style.color = 'gray';
-            container.style.borderTop = '5px solid green';
-        }
-    }
+        const faqs = [
+            {
+                title: "Where are these chairs assembled?",
+                text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium, quaerat temporibus quas dolore provident nisi ut aliquid ratione beatae sequi aspernatur veniam repellendus.",
+            },
+            {
+                title: "How long do I have to return my chair?",
+                text: "Pariatur recusandae dignissimos fuga voluptas unde optio nesciunt commodi beatae, explicabo natus.",
+            },
+            {
+                title: "Do you ship to countries outside the EU?",
+                text: "Excepturi velit laborum, perspiciatis nemo perferendis reiciendis aliquam possimus dolor sed! Dolore laborum ducimus veritatis facere molestias!",
+            },
+        ];
 
-    const faqs = [
-        {
-            title: "Where are these chairs assembled?",
-            text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium, quaerat temporibus quas dolore provident nisi ut aliquid ratione beatae sequi aspernatur veniam repellendus.",
-        },
-        {
-            title: "How long do I have to return my chair?",
-            text: "Pariatur recusandae dignissimos fuga voluptas unde optio nesciunt commodi beatae, explicabo natus.",
-        },
-        {
-            title: "Do you ship to countries outside the EU?",
-            text: "Excepturi velit laborum, perspiciatis nemo perferendis reiciendis aliquam possimus dolor sed! Dolore laborum ducimus veritatis facere molestias!",
-        },
-    ];
+        const outerDyn = document.getElementById('outerDyn');
 
-    const outer = document.getElementById('outer');
+        faqs.forEach((faq, index) => {
+            const containerDyn = document.createElement('div');
+            containerDyn.className = 'containerDyn';
 
-    faqs.forEach((faq, index) => {
-        const container = document.createElement('div');
-        container.className = 'container';
+            const questionDyn = document.createElement('div');
+            questionDyn.className = 'questionDyn';
 
-        const question = document.createElement('div');
-        question.className = 'question';
+            const numDyn = document.createElement('span');
+            numDyn.className = 'numDyn';
+            numDyn.textContent = "0" + (index + 1);
 
-        const num = document.createElement('span');
-        num.className = 'num';
-        num.textContent = "0" + (index + 1);
+            const titleDyn = document.createElement('span');
+            titleDyn.className = 'titleDyn';
+            titleDyn.textContent = faq.title;
 
-        const title = document.createElement('span');
-        title.className = 'title';
-        title.textContent = faq.title;
+            const signDyn = document.createElement('span');
+            signDyn.className = 'signDyn';
+            signDyn.textContent = '+';
 
-        const sign = document.createElement('span');
-        sign.className = 'sign';
-        sign.textContent = '+';
+            const answerDyn = document.createElement('div');
+            answerDyn.className = 'answerDyn';
+            answerDyn.textContent = faq.text;
 
-        const answer = document.createElement('div');
-        answer.className = 'answer';
-        answer.textContent = faq.text;
+            questionDyn.appendChild(numDyn);
+            questionDyn.appendChild(titleDyn);
+            questionDyn.appendChild(signDyn);
+            containerDyn.appendChild(questionDyn);
+            containerDyn.appendChild(answerDyn);
 
-        question.appendChild(num);
-        question.appendChild(title);
-        question.appendChild(sign);
-        container.appendChild(question);
-        container.appendChild(answer);
+            containerDyn.addEventListener('click', function () {
+                toggleAnswer(containerDyn);
+            });
 
-        container.addEventListener('click', function () {
-            toggleAnswer(container);
+            outerDyn.appendChild(containerDyn);
         });
+    </script>
+</body>
 
-        outer.appendChild(container);
-    });
-</script>
+</html>
+
 
 
 
