@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Profile Cards</title>
+    <style>
+        span {
+            justify-items: left;
+            padding-left: 40px;
+        }
+
+        h2,
+        p {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: left;
+            padding-left: 40px;
+            padding-right: 40px;
+
+        }
+
+
+
+        #profile-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .profile-card {
+            width: 390px;
+            margin: 20px;
+            border: 4px solid rgba(0, 0, 0, 0.836);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 390px;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .skill {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .head {
+            margin-top: 30px;
+            justify-content: center;
+            text-align: center;
+            color: rgba(212, 136, 21, 0.863);
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: lighter;
+            width: 100%;
+        }
+
+        .Menuhead {
+            justify-content: center;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        h1.with-lines {
+            position: relative;
+            display: inline-block;
+            margin-top: 50px;
+        }
+
+        h1.with-lines:before,
+        h1.with-lines:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 15%;
+            border-bottom: 2px solid rgba(212, 136, 21, 0.863);
+        }
+
+        h1.with-lines:before {
+            left: -15%;
+        }
+
+        h1.with-lines:after {
+            right: -15%;
+        }
+
+        .Menuhead .with-lines {
+            border-top: 2px solid #070505;
+            border-bottom: 1px solid #030202;
+            padding: 10px 0;
+            width: fit-content;
+            display: inline-block;
+        }
+
+        #menu {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 10px;
+        }
+
+        .pizza {
+            display: flex;
+            align-items: center;
+            background-color: beige;
+            width: 40%;
+            padding: 10px;
+            margin: 10px 65px;
+            box-sizing: border-box;
+        }
+
+        .pizza img {
+            height: auto;
+            max-width: 100px;
+            border-radius: 8px;
+            margin-right: 10px;
+            background-color: beige;
+        }
+
+        .pizza-details {
+            text-align: left;
+        }
+
+        .pizza-name {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .pizza-ingredients {
+            color: #555;
+            margin: 5px 0;
+            padding: 0%;
+        }
+
+        .pizza-price {
+            font-weight: bold;
+            color: #333;
+            padding: 0% ;
+        }
+
+        .sold-out {
+            color: gray;
+            font-weight: bold;
+        }
+
+        .pizzaContainer {
+            background-color: beige;
+        }
+
+        @media (max-width: 768px) {
+            .pizza {
+                flex-direction: column;
+                width: 100%;
+                align-items: flex-start;
+            }
+
+            .pizza img {
+                max-width: 80px;
+                margin-bottom: 10px;
+            }
+
+            .pizza-name {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            h1.with-lines:before,
+            h1.with-lines:after {
+                width: 20%;
+            }
+
+            .pizza img {
+                max-width: 60px;
+            }
+
+            .pizza-name {
+                font-size: 1.2em;
+            }
+        }
+        .OpenningTime,.descrip{
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+            margin: 20px;
+        }
+        #orderbtn{
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+            margin: 20px;
+            padding: 5px;
+            height: fit-content;
+            width: fit-content;
+            background-color:rgba(212, 136, 21, 0.863); ;
+            display: flex;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="profile-cards"></div>
+    <div class="pizzaContainer">
+        <div id="PizzaSection">
+            <div class="head">
+                <h1 class="with-lines">FAST REACT PIZZA CO</h1>
+            </div>
+            <div class="Menuhead">
+                <h2 class="with-lines">OUR MENU</h2>
+            </div>
+            <p class="descrip">Authentic Italian cuisine. 6 creative dishes to choose from. All from our<br> stone oven, all organic, all delicious</p>
+            <div class="menu" id="menu">          
+            </div>
+            <div class="OpenningTime">We are open from 11:00 to 22:00. Come visit us or order us online.</div>
+            <div class="d-flex justify-content-center"><button id="orderbtn">Order</button></div>
+
+            
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+
+<script>
+    const profileData = [
+        {
+            id: 1,
+            name: "Jonas Schmedtmann",
+            intro: "Full-stack web developer and teacher at Udemy. When not coding or preparing a course, I like to play board games, to cook (and eat), or to just enjoy the Portuguese sun at the beach.",
+            image: "../images/images.jpg",
+            skills: [
+                { name: "React", color: "lightblue", level: "Intermediate" },
+                { name: "HTML+CSS", color: "blue", level: "Advanced" },
+                { name: "JavaScript", color: "yellow", level: "Intermediate" },
+                { name: "Svelte", color: "orangered", level: "Beginner" },
+            ],
+        },
+        {
+            id: 2,
+            name: "Sara Vieira",
+            intro:
+                "Developer Advocate at YLD and Speaker. I enjoy coding, traveling, and sharing knowledge with the community.",
+            image: "../images/download (2).jpg",
+            skills: [
+                {
+                    name: "React",
+                    color: "light blue",
+                    level: "Intermediate",
+                },
+                {
+                    name: "JavaScript",
+                    color: "yellow",
+                    level: "Intermediate",
+                },
+                {
+                    name: "GraphQL",
+                    color: "purple",
+                    level: "Advanced",
+                },
+                {
+                    name: "Node.js",
+                    color: "green",
+                    level: "Intermediate",
+                },
+            ],
+        },
+        {
+            id: 3,
+            name: "Chris Coyier",
+            intro:
+                "Web Developer, Writer, and Speaker. I love building things for the web and sharing what I learn through my blog and talks.",
+            image: "../images/download.jpg",
+            skills: [
+                {
+                    name: "HTML+CSS",
+                    color: "blue",
+                    level: "Advanced",
+                },
+                {
+                    name: "JavaScript",
+                    color: "yellow",
+                    level: "Intermediate",
+                },
+                {
+                    name: "SVG",
+                    color: "orange",
+                    level: "Intermediate",
+                },
+                {
+                    name: "WordPress",
+                    color: "blue",
+                    level: "Intermediate",
+                },
+            ],
+        },
+        {
+            id: 4,
+            name: "Ari Lerner",
+            intro:
+                "Software Engineer, Author, and Speaker. I specialize in building scalable web applications and teaching others how to do the same.",
+            image: "../images/images (1).jpg",
+            skills: [
+                {
+                    name: "Angular",
+                    color: "red",
+                    level: "Intermediate",
+                },
+                {
+                    name: "Node.js",
+                    color: "green",
+                    level: "Advanced",
+                },
+                {
+                    name: "TypeScript",
+                    color: "blue",
+                    level: "Intermediate",
+                },
+                {
+                    name: "Docker",
+                    color: "blue",
+                    level: "Intermediate",
+                },
+            ],
+        },
+        {
+            id: 5,
+            name: "Ali Spittel",
+            intro:
+                "Senior Developer Advocate at AWS and Blogger. I'm passionate about education, accessibility, and building inclusive communities in tech.",
+            image: "../images/images (2).jpg",
+            skills: [
+                {
+                    name: "Python",
+                    color: "blue",
+                    level: "Intermediate",
+                },
+                {
+                    name: "JavaScript",
+                    color: "yellow",
+                    level: "Intermediate",
+                },
+                {
+                    name: "React",
+                    color: "light blue",
+                    level: "Intermediate",
+                },
+                {
+                    name: "AWS",
+                    color: "orange",
+                    level: "Advanced",
+                },
+            ],
+        },
+    ];
+
+    const profileCardsContainer = document.getElementById("profile-cards");
+
+    profileData.forEach(profile => {
+        const skillsHtml = profile.skills.map(eachskill => {
+            const skill = document.createElement("span");
+            skill.classList.add("skill");
+            skill.style.backgroundColor = eachskill.color;
+            skill.textContent = `${eachskill.name} (${eachskill.level})`;
+            return skill;
+        });
+
+
+        const cardContainer = document.createElement("div");
+        cardContainer.classList.add("profile-card");
+
+        const imageContainer = document.createElement("div");
+        imageContainer.classList.add("profile-image");
+
+        const imageElement = document.createElement("img");
+        imageElement.src = profile.image;
+        imageElement.alt = profile.name;
+
+        imageContainer.appendChild(imageElement);
+
+        const nameElement = document.createElement("h2");
+        nameElement.textContent = profile.name;
+
+        const introElement = document.createElement("p");
+        introElement.textContent = profile.intro;
+
+        const skillsContainer = document.createElement("p");
+        skillsContainer.classList.add('skillsContainer');
+        skillsHtml.forEach(skill => {
+            skillsContainer.appendChild(skill);
+        });
+
+        cardContainer.appendChild(imageContainer);
+        cardContainer.appendChild(nameElement);
+        cardContainer.appendChild(introElement);
+        cardContainer.appendChild(skillsContainer);
+
+        profileCardsContainer.appendChild(cardContainer);
+    });
+</script>
+<script>
+    const pizzaData = [
+        { name: "Focaccia", ingredients: "Bread with italian olive oil and rosemary", price: 6, photoName: "../images/pizza1.png", soldOut: false },
+        { name: "Pizza Margherita", ingredients: "Tomato and mozarella", price: 10, photoName: "../images/pizza2.png", soldOut: false },
+        { name: "Pizza Spinaci", ingredients: "Tomato, mozarella, spinach, and ricotta cheese", price: 12, photoName: "../images/pizza3.png", soldOut: false },
+        { name: "Pizza Funghi", ingredients: "Tomato, mozarella, mushrooms, and onion", price: 12, photoName: "../images/pizza4.png", soldOut: false },
+        { name: "Pizza Salamino", ingredients: "Tomato, mozarella, and pepperoni", price: 15, photoName: "../images/pizza5.png", soldOut: true },
+        { name: "Pizza Prosciutto", ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese", price: 18, photoName: "../images/pizza6.png", soldOut: false }
+    ];
+
+    const menuContainer = document.getElementById('menu');
+
+    pizzaData.forEach(pizza => {
+        const pizzaItem = document.createElement('div');
+        pizzaItem.className = 'pizza';
+
+        const pizzaImage = document.createElement('img');
+        pizzaImage.src = pizza.photoName;
+        pizzaImage.alt = pizza.name;
+
+        const pizzaDetails = document.createElement('span');
+        pizzaDetails.className = 'pizza-details';
+
+        const pizzaName = document.createElement('h3');
+        pizzaName.className = 'pizza-name';
+        pizzaName.textContent = pizza.name;
+
+        const pizzaIngredients = document.createElement('p');
+        pizzaIngredients.className = 'pizza-ingredients';
+        pizzaIngredients.textContent = pizza.ingredients;
+
+        const pizzaPrice = document.createElement('p');
+        pizzaPrice.className = 'pizza-price';
+        pizzaPrice.textContent = `$${pizza.price}`;
+
+        pizzaDetails.appendChild(pizzaName);
+        pizzaDetails.appendChild(pizzaIngredients);
+        pizzaDetails.appendChild(pizzaPrice);
+
+        if (pizza.soldOut) {
+            pizzaItem.style.filter = ' grayscale(100%)';
+            pizzaDetails.style.color = 'gray';
+            pizzaIngredients.style.color = 'gray';
+            pizzaPrice.style.color = 'gray';
+        }
+        pizzaItem.appendChild(pizzaImage);
+        pizzaItem.appendChild(pizzaDetails);
+        menuContainer.appendChild(pizzaItem);
+    });
+</script>
